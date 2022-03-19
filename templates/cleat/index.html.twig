@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <h1>Cleats</h1>
+{% endblock %}
+
+{% block body %}
+<div>
+    {% include 'cleat/_filter.html.twig' with {form: form} only %}
+</div>
+
+<div class="produits">
+    {% for cleat in cleats %}
+    <div class="produits_box">
+        <a href="{{ path('app_cleat_show', {'id': cleat.id}) }}">
+            <div class="produits_box_header">
+                <img src="{{ cleat.marque.logo }}">
+            </div>
+            <div class="produits_box_img">
+                <img src="{{ cleat.image1 }}">
+            </div>
+            <div class="produits_box_info">
+                <p><b><span>{{ cleat.marque.name }}</span> - {{ cleat.name }}</b></p>
+                <p>{{ cleat.prix }} €</p> <!--nom BDD + champs-->
+            </div>
+        </a>
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="produits_box_footer">
+            <a href="{{ path('app_cleat_edit', {'id': cleat.id}) }}">Modifier</a>
+        </div>
+        {% elseif is_granted('ROLE_USER') %}
+        <div class="produits_box_footer">
+            <a href="{{ path('panier_add_cleat', {id1:app.user.panier.id, id2:cleat.id}) }}">Ajouter au panier</a>
+        </div>
+        {% endif %}
+    </div>
+    {% else %}
+    <p>Aucun produit trouvé...</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

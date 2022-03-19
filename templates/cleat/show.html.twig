@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+<img class="header_page_logo" src="{{ cleat.marque.logo }}">
+{% endblock %}
+
+{% block body %}
+
+<a class="back_page" href="{{ path('app_cleat_index') }}">retour à la liste</a>
+<div class="produit">
+    <div class="produit_images">
+        <div class="produits_box_img">
+            <img src="{{ cleat.image1 }}">
+        </div>
+        <div class="produits_box_img">
+            <img src="{{ cleat.image2 }}">
+        </div>
+        <div class="produits_box_img">
+            <img src="{{ cleat.image3 }}">
+        </div>
+        <div class="produits_box_img">
+            <img src="{{ cleat.image4 }}">
+        </div>
+    </div>
+    <div class="produit_droite">
+        <div class="produit_info">
+            <div class="produit_info_title">
+                <h2><b><span>{{ cleat.marque.name }}</span> - {{ cleat.name }}</b></h2>
+            </div>
+            <div class="produit_info_info">
+                <p><b>Prix : </b>{{ cleat.prix }} €</p>
+                <p><b>Type de terrain : </b>{{ cleat.terrain.name }}</p>
+                <div class="produit_info_info_couleurs">
+                    <h3>Couleurs : </h3>
+                    {% for couleur in cleat.couleurs %}
+                    <p>{{ couleur.name }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="produit_info_panier">
+                {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('panier_add_cleat', {id1:app.user.panier.id, id2:cleat.id}) }}">
+                    <button>Ajouter au panier</button>
+                </a>
+                {% else %}
+                <a href="{{ path('app_login') }}"><button>Connectez-vous pour acheter ce produit</button></a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="produit_btns_admin">
+            <a class="produit_btn_admin" href="{{ path('app_cleat_edit', {'id': cleat.id}) }}"><button
+                    class="produit_btn_admin_modifier">Modifier</button></a>
+            {{ include('cleat/_delete_form.html.twig') }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{# <div class="form_compte_box popup">
+        <h1>Connectez-vous pour acheter ce produit !</h1>
+
+        <a href="{{ path('app_login') }}"><button class="form_compte_box_btn">
+            Se connecter
+        </button></a>
+    </div> #}
+
+
+{% endblock %}

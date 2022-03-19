@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <h1>Panier n°: {{ panier.id }}</h1>
+{% endblock %}
+
+{% block body %}
+    {% block btn_page %}
+    <a class="back_page" href="{{ path('app_panier_index') }}">retour à la liste</a> <!--des paniers-->
+    {% endblock %}
+
+
+<div class="panier">
+    <div class="panier_header">
+        <p><b>Panier de : </b>{{ panier.user.pseudo }}</p>
+    </div>
+    <div class="panier_info">
+        <div class="panier_info_items"><!--notre entity user à une variable $cleats qui réccupère tous les crampons (par name) de la table cleat_user (relation plusieurs à plusieurs)-->
+            {% for cleat in panier.name %} 
+            <div class="panier_info_item">
+                <div class="panier_info_item_image">
+                    <img src="{{ cleat.image1 }}">
+                </div>
+                <div class="panier_info_item_info">
+                    <p>{{ cleat.marque.name }} - {{ cleat.name }}</p>
+                    <p><span class="panier_info_item_info_prix">{{ cleat.prix }}</span> €</p>
+                </div>
+                <div class="panier_info_item_delete">
+                    <a href="{{ path('panier_delete_cleat', {id1:panier.id, id2:cleat.id}) }}"><b class="delete_croix">X</b></a>
+                </div>
+            </div>
+            {% endfor %}
+            <p>Prix du panier : <span class="prix_panier"></span> €</p>
+        </div>
+    </div>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="panier_btns_admin">
+        <a class="panier_btn_admin" href="{{ path('app_panier_edit', {'id': panier.id}) }}"><button class="produit_btn_admin_modifier">Modifier</button></a>
+        {# {{ include('panier/_delete_form.html.twig') }} #}
+    </div>
+    {% endif %}
+</div>
+
+    
+{% endblock %}

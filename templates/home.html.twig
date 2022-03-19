@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>{{ titre }}</h1>
+    {% if is_granted('ROLE_USER') %}
+    <p>Bienvenu {{ app.user.pseudo }} (information réccupérée pcq connecté avec twig)</p>
+    {% endif %}
+{% endblock %}

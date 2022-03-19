@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+<h1>Modifier un crampon</h1>
+{% endblock %}
+
+{% block body %}
+    <a class="back_page" href="{{ path('app_cleat_index') }}">Retour à la liste</a>
+
+    <div class="form">
+        <div class="form_box">
+        {{ include('cleat/_form.html.twig', {'button_label': 'Modifier'}) }}
+        </div>
+    </div>
+
+    {# {{ include('cleat/_delete_form.html.twig') }} #}
+{% endblock %}

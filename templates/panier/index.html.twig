@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <h1>Paniers</h1>
+{% endblock %}
+
+{% block body %}
+    {% block btn_page %}
+    <a href="{{ path('compte') }}"><button>Voir les crampons</button></a>
+    {% endblock %}
+
+    <div class="pannel_produits">
+        {# {% for panier in paniers %} #}
+        {% for panier in users %}
+        <div class="pannel_produits_box">
+            <a href="{{ path('app_panier_show', {'id': panier.id}) }}">
+                <div class="pannel_produits_box_img">
+                    <p><b>{{ panier.id }}</b></p>
+                </div>
+                <div class="pannel_produits_box_info">
+                    <p>Pannier de : <i>{{ panier.pseudo }}</i></p>
+                </div>
+            </a>
+            <a class="pannel_produits_edit" href="{{ path('app_panier_edit', {'id': panier.id}) }}">Modifier</a>
+            {# {{ include('panier/_delete_form.html.twig') }} -> sinon ça delete le panier du user qu'on peut pas recréer il faudrait le vider à la place #}
+        </div>
+        {% else %}
+        <p>Aucun panier trouvé...</p>
+        {% endfor %}
+    </div>
+
+    {# <a href="{{ path('app_panier_new') }}"><button>Créer un panier</button></a> #}
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+<h1>Mon compte</h1>
+{% endblock %}
+
+
+{% block body %}
+    {% block btn_page %}
+        {% if is_granted('ROLE_USER') %}
+        <div class="div_back_page">
+            <a class="back_page" href="{{ path('app_cleat_index') }}">retour à la liste</a>
+        </div>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="btn_header_admin">
+            <a href="{{ path('app_panier_index') }}"><button>Voir les paniers</button></a>
+            <a href="{{ path('app_cleat_new') }}"><button>Ajouter un crampon</button></a>
+        </div>
+        {% endif %}
+    {% endblock %}
+
+
+{% if is_granted('ROLE_ADMIN') %}
+
+
+
+
+<div class="pannel_produits">
+    {% for cleat in cleats %}
+    <div class="pannel_produits_box">
+        <a href="{{ path('app_cleat_show', {'id': cleat.id}) }}">
+            <div class="pannel_produits_box_img">
+                <img src="{{ cleat.image1 }}">
+            </div>
+            <div class="pannel_produits_box_info">
+                <p><b><span>{{ cleat.marque.name }}</span> - {{ cleat.name }}</b></p>
+                <p>{{ cleat.prix }} €</p><!--nom BDD + champs-->
+                {# <p>nombre de fois commandé</p> #}
+            </div>
+        </a>
+        <a class="pannel_produits_edit" href="{{ path('app_cleat_edit', {'id': cleat.id}) }}">Modifier</a>
+        {{ include('cleat/_delete_form.html.twig') }}
+    </div>
+    {% endfor %}
+</div>
+
+{% elseif is_granted('ROLE_USER') %}
+<div class="panier">
+    <div class="panier_header">
+        <p>Votre panier {{ app.user.pseudo }} !</p>
+    </div>
+    <div class="panier_info">
+        {% for cleat in panier.name %} <!--name pcq faute frappe-->
+        <div class="panier_info_item">
+            <div class="panier_info_item_image">
+                <img src="{{ cleat.image1 }}">
+            </div>
+            <div class="panier_info_item_info">
+                <p>{{ cleat.marque.name }} - {{ cleat.name }}</p>
+                <p><span class="panier_info_item_info_prix">{{ cleat.prix }}</span> €</p>
+            </div>
+            <div class="panier_info_item_delete">
+                <a href="{{ path('panier_delete_cleat', {id1:panier.id, id2:cleat.id}) }}"><b
+                        class="delete_croix">X</b></a>
+            </div>
+        </div>
+        {% endfor %}
+        <p>Prix du panier : <span class="prix_panier"></span> €</p>
+    </div>
+</div>
+{% else %}
+<p>Vous n'êtes pas connecté...</p>
+{% endif %}
+
+
+{% endblock %}
