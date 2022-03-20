@@ -277,6 +277,7 @@ nav>ul>li {
 
 .produit_info_info_couleurs {
     display: flex;
+    align-items: center;
 }
 
 .produit_info_info_couleurs > p {
@@ -518,6 +519,9 @@ nav>ul>li {
     width: 50%;
 }
 
+.update_form_panier > div > div:nth-child(2) {
+    display: none; /*pour cacher la possibilité de changer de user pcq'on sait pas encore comment modifier ce genre de form*/
+}
 
 
 /* FOOTER */

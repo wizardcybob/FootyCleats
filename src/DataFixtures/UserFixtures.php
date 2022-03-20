@@ -18,7 +18,7 @@ class UserFixtures extends Fixture {
 		// Exemples de données à insérer dans la base de données
 		$user_list = [
 			['pseudo' => 'admin', 'passwd' => '123', 'roles' => ['ROLE_USER', 'ROLE_ADMIN']],
-			['pseudo' => 'wiz', 'passwd' => '456', 'roles' => ['ROLE_USER']],
+			['pseudo' => 'guest', 'passwd' => '789', 'roles' => ['ROLE_USER']],
 		];
 		// Boucle pour chaque ligne
 		foreach ($user_list as $user_data) {
