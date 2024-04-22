@@ -6,7 +6,7 @@
 
 {% block body %}
     {% block btn_page %}
-    <a class="back_page" href="{{ path('app_panier_index') }}">retour à la liste</a> <!--des paniers-->
+    <a class="back_page" href="{{ path('app_panier_index') }}"><i class="bi bi-arrow-left"></i>retour à la liste</a> <!--des paniers-->
     {% endblock %}
 
 
@@ -25,9 +25,11 @@
                     <p>{{ cleat.marque.name }} - {{ cleat.name }}</p>
                     <p><span class="panier_info_item_info_prix">{{ cleat.prix }}</span> €</p>
                 </div>
-                <div class="panier_info_item_delete">
-                    <a href="{{ path('panier_delete_cleat', {id1:panier.id, id2:cleat.id}) }}"><b class="delete_croix">X</b></a>
-                </div>
+                <a href="{{ path('panier_delete_cleat', {id1:panier.id, id2:cleat.id}) }}">
+                    <div class="panier_info_item_delete">
+                        <b class="delete_croix">X</b>
+                    </div>
+                </a>
             </div>
             {% endfor %}
             <p>Prix du panier : <span class="prix_panier"></span> €</p>
