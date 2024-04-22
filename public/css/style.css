@@ -599,6 +599,12 @@ span { /*mettre le btn en penché*/
     transform: rotate(180deg);
 }
 
+/* ICONS */
+.bi-arrow-left::before {
+    margin-right: 8px;
+}
+
+
 /**************SVG****************/
 
 path.one {
