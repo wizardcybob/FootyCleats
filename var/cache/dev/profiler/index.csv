@@ -2188,3 +2188,4 @@ ec1443,127.0.0.1,GET,http://localhost:8000/panier/,1713737719,,200
 da7cf6,127.0.0.1,GET,http://localhost:8000/panier/1,1713737738,,200
 49245f,127.0.0.1,GET,http://localhost:8000/panier/delete-cleat/1/2,1713737745,,200
 8f0369,127.0.0.1,GET,http://localhost:8000/panier/,1713737780,,200
+a7ef35,127.0.0.1,GET,http://localhost/footycleats/public/,1713783254,,200
