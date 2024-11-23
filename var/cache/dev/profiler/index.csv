@@ -2242,3 +2242,10 @@ f99ee0,127.0.0.1,GET,http://localhost/footycleats/public/cleat/,1713788774,,200
 9daf70,127.0.0.1,GET,http://localhost/footycleats/public/cleat/,1713788777,,200
 1e0114,127.0.0.1,GET,http://localhost/footycleats/public/cleat/,1713788928,,200
 21f4d5,127.0.0.1,GET,http://localhost/footycleats/public/cleat/,1713788956,,200
+c12915,127.0.0.1,GET,http://localhost/footycleats/public/,1732397911,,200
+0728c8,127.0.0.1,GET,http://localhost/footycleats/public/cleat/8,1732397965,,200
+cb6605,127.0.0.1,GET,http://localhost/footycleats/public/cleat/1,1732397971,,200
+c74568,127.0.0.1,GET,http://localhost/footycleats/public/login,1732397979,,200
+bef7e3,127.0.0.1,POST,http://localhost/footycleats/public/login,1732397992,,302
+2cbd8a,127.0.0.1,GET,http://localhost/footycleats/public/cleat/,1732397992,,200
+792707,127.0.0.1,GET,http://localhost/footycleats/public/cleat/15/edit,1732397998,,200
